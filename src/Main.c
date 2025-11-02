@@ -6,7 +6,7 @@ void* SoundBoard_Starter(SoundBoard* sb){
 
 int main(int argc, char *argv[]) {
 
-    SoundBoard sb = SoundBoard_New();
+    SoundBoard sb = SoundBoard_New(SOUNDBOARD_CHANNELS,SOUNDBOARD_BITS_PER_SAMPLE,SOUNDBOARD_SAMPLE_RATE,1);
 
     Thread t = Thread_New(NULL,(void*)SoundBoard_Starter,&sb);
     Thread_Start(&t);
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
     }
     SoundBoard_Set(&sb,buffer,1024);
 
-    Thread_Join(&t,NULL);
+    Thread_Join(&t);
 
     SoundBoard_Free(&sb);
     return 0;
